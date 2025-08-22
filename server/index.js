@@ -7,6 +7,7 @@ import fileUpload from "express-fileupload";
 import { connect } from "./config/db.js";
 import { cloudinaryConnect } from "./config/cloudinary.js";
 import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/user.js";
 
 dotenv.config();
 const app = express();
@@ -37,6 +38,7 @@ cloudinaryConnect();
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes); 
 
 // Test route
 app.get("/", (req, res) => {
