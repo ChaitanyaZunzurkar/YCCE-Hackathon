@@ -61,20 +61,28 @@ export default function Navbar() {
           </button>
         </div>
       ) : (
-        <div className="space-x-4">
-          <Link
-            to="/signin"
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-          >
-            Sign In
-          </Link>
-          <Link
-            to="/signup"
-            className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-          >
-            Sign Up
-          </Link>
-        </div>
+
+<div className="flex space-x-4">
+  {/* Sign In Button */}
+  <Link
+    to="/signin"
+    className="group bg-sky-500 hover:bg-white text-white rounded-full flex items-center justify-center cursor-pointer hover:scale-105 transition-all duration-300 px-5 py-2 gap-2 shadow-lg hover:shadow-[0_8px_20px_rgba(59,130,246,0.5)] hover:text-black hover:font-bold   "
+  >
+    <p className="font-semibold text-white group-hover:text-black  ">Sign In</p>
+  </Link>
+
+  {/* Sign Up Button */}
+  <Link
+    to="/signup"
+    className=" group bg-sky-500 hover:bg-white text-white rounded-full flex items-center justify-center cursor-pointer hover:scale-105 hover:shadow-[0_8px_20px_rgba(59,130,246,0.5)] transition-all duration-300 px-5 py-2 gap-2 shadow-md hover:text-black"
+  >
+    <div className="relative flex items-center justify-center h-4 w-3 rounded-full">
+    </div>
+    <p className="font-semibold text-white group-hover:text-black  ">Sign Up</p>
+  </Link>
+</div>
+
+
       )}
     </nav>
   );
