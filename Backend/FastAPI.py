@@ -19,10 +19,13 @@ logger = logging.getLogger(__name__)
 # ----------------- FastAPI App -----------------
 app = FastAPI(title="Groq Memory-Aware AI")
 
-# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080"],  # Vite dev server
+    allow_origins=[
+        "http://localhost:3000",  # React default
+        "http://localhost:5173",  # Vite default
+        "http://localhost:8080",  # In case you're using this too
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
