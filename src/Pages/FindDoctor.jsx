@@ -63,7 +63,7 @@ export default function FindDoctor() {
 
       </div>
 
-      <div className="flex justify-center gap-4 mb-6 flex-wrap">
+      {/* <div className="flex justify-center gap-4 mb-6 flex-wrap">
         {domains.map((domain, index) => (
           <button
             key={index}
@@ -81,9 +81,31 @@ export default function FindDoctor() {
             Clear
           </button>
         )}
-      </div>
+      </div> */}
+<div className="flex justify-center gap-16 mb-6 flex-wrap">
+  {domains.map((domain, index) => (
+    <button
+      key={index}
+      onClick={() => setSelectedDomain(domain)}
+      className={`px-4 py-2 rounded-full border transition 
+        ${selectedDomain === domain 
+          ? 'bg-gradient-to-r from-sky-200 via-white to-blue-700 text-white' 
+          : 'bg-gradient-to-r from-sky-500 to-blue-700 text-white hover:opacity-90'}`}
+    >
+      {domain}
+    </button>
+  ))}
+  {selectedDomain && (
+    <button
+      onClick={() => setSelectedDomain('')}
+      className="px-4 py-2 rounded-full bg-red-500 text-white hover:opacity-90 transition"
+    >
+      Clear
+    </button>
+  )}
+</div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredDoctors.map((doc, index) => (
           <div key={index} className="bg-blue-100 border border-blue-200 p-4 rounded-xl shadow hover:shadow-lg transition">
             <h2 className="text-xl font-semibold text-blue-900">{doc.name}</h2>
