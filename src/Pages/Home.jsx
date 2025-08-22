@@ -4,11 +4,11 @@ import Footer from "../components/Footer";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-gradient-to-r from-white to-sky-200">
       <Navbar />
 
       {/* Hero Section */}
-      <main className="flex-1 flex flex-col items-center justify-center bg-gray-50 p-6">
+      <main className="flex-1 flex flex-col items-center justify-center p-6">
         <h1 className="text-3xl font-bold text-gray-800 text-center">
           Welcome to Virtual Doctor Assistant
         </h1>
