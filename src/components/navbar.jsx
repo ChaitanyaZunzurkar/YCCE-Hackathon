@@ -13,9 +13,11 @@ export default function Navbar() {
         <Link to="/chat">Chatbot</Link>
       </div>
 
+      
       {/* Right: User Profile */}
       <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center cursor-pointer">
         👤
+        
       </div>
     </nav>
   );

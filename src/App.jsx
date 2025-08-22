@@ -3,12 +3,15 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./Pages/Home";
 // import Onboarding from "./pages/Onboarding";
 // import Chat from "./pages/Chat";
+import './index.css'
+
 
 export default function App() {
   return (
-    <Routes>
+     
+     <Routes>
       {/* Home Page */}
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Home />} />  
 
       {/* Onboarding Page
       <Route path="/onboarding" element={<Onboarding />} /> */}
@@ -18,6 +21,7 @@ export default function App() {
 
       {/* Redirect unknown routes */}
       {/* <Route path="*" element={<Navigate to="/" />} /> */}
-    </Routes>
+    </Routes> 
+    
   );
 }
