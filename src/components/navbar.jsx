@@ -5,6 +5,10 @@ import { useEffect, useState } from "react";
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+
+  // 1️⃣ Added state for dropdown menu
+  const [showDropdown, setShowDropdown] = useState(false); // <-- NEW
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,8 +48,12 @@ export default function Navbar() {
 
       {/* Right: User Profile or Auth Buttons */}
       {isLoggedIn ? (
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
+        <div className="relative flex items-center space-x-4">
+          {/* 2️⃣ Updated user icon to be clickable */}
+          <div
+            className="flex items-center space-x-2 cursor-pointer"  // <-- cursor-pointer added
+            onClick={() => setShowDropdown(!showDropdown)}           // <-- toggles dropdown
+          >
             <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
               {user?.name?.charAt(0).toUpperCase()}
             </div>
@@ -53,36 +61,43 @@ export default function Navbar() {
               {user?.name}
             </span>
           </div>
-          <button
-            onClick={handleLogout}
-            className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-          >
-            Logout
-          </button>
+
+          {/* 3️⃣ Added dropdown menu */}
+          {showDropdown && (                                        
+            <div className="absolute right-0 mt-12 w-40 bg-white border rounded-lg shadow-lg flex flex-col">
+              <button
+                onClick={() => { navigate("/profile"); setShowDropdown(false); }}  // <-- Navigate to profile
+                className="px-4 py-2 text-left hover:bg-gray-100"
+              >
+                Profile
+              </button>
+              <button
+                onClick={handleLogout}                                   
+                className="px-4 py-2 text-left hover:bg-gray-100 text-red-500"
+              >
+                Logout
+              </button>
+            </div>
+          )}
         </div>
       ) : (
+        <div className="flex space-x-4">
+          {/* Sign In Button */}
+          <Link
+            to="/signin"
+            className="group bg-sky-500 hover:bg-white text-white rounded-full flex items-center justify-center cursor-pointer hover:scale-105 transition-all duration-300 px-5 py-2 gap-2 shadow-lg hover:shadow-[0_8px_20px_rgba(59,130,246,0.5)] hover:text-black hover:font-bold"
+          >
+            <p className="font-semibold text-white group-hover:text-black">Sign In</p>
+          </Link>
 
-<div className="flex space-x-4">
-  {/* Sign In Button */}
-  <Link
-    to="/signin"
-    className="group bg-sky-500 hover:bg-white text-white rounded-full flex items-center justify-center cursor-pointer hover:scale-105 transition-all duration-300 px-5 py-2 gap-2 shadow-lg hover:shadow-[0_8px_20px_rgba(59,130,246,0.5)] hover:text-black hover:font-bold   "
-  >
-    <p className="font-semibold text-white group-hover:text-black  ">Sign In</p>
-  </Link>
-
-  {/* Sign Up Button */}
-  <Link
-    to="/signup"
-    className=" group bg-sky-500 hover:bg-white text-white rounded-full flex items-center justify-center cursor-pointer hover:scale-105 hover:shadow-[0_8px_20px_rgba(59,130,246,0.5)] transition-all duration-300 px-5 py-2 gap-2 shadow-md hover:text-black"
-  >
-    <div className="relative flex items-center justify-center h-4 w-3 rounded-full">
-    </div>
-    <p className="font-semibold text-white group-hover:text-black  ">Sign Up</p>
-  </Link>
-</div>
-
-
+          {/* Sign Up Button */}
+          <Link
+            to="/signup"
+            className="group bg-sky-500 hover:bg-white text-white rounded-full flex items-center justify-center cursor-pointer hover:scale-105 hover:shadow-[0_8px_20px_rgba(59,130,246,0.5)] transition-all duration-300 px-5 py-2 gap-2 shadow-md hover:text-black"
+          >
+            <p className="font-semibold text-white group-hover:text-black">Sign Up</p>
+          </Link>
+        </div>
       )}
     </nav>
   );

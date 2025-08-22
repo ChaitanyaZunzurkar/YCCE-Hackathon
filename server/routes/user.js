@@ -1,11 +1,11 @@
 import express from "express";
 import { getProfile, updateProfile, deleteAccount } from "../controllers/user.js";
-import { authMiddleware } from "../middlewares/auth.js";
+import protect from "../middleware/middleware.js";
 
 const router = express.Router();
 
-router.get("/", authMiddleware, getProfile);       // GET /api/user
-router.put("/", authMiddleware, updateProfile);    // PUT /api/user
-router.delete("/", authMiddleware, deleteAccount);// DELETE /api/user
+router.get("/me", protect, getProfile);
+router.put("/me", protect, updateProfile);
+router.delete("/me", protect, deleteAccount);
 
 export default router;

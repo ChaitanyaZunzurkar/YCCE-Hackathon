@@ -5,13 +5,14 @@ import Home from "./Pages/Home";
 // import Chat from "./pages/Chat";
 import SignIn from "./components/signin";
 import SignUp from "./components/signup";
+import ProfilePage from "./Pages/userProfile";
 
 export default function App() {
   return (
     <Routes>
       {/* Home Page */}
       <Route path="/" element={<Home />} />
-
+      <Route path="/profile" element={<ProfilePage />} />
       {/* Onboarding Page
       <Route path="/onboarding" element={<Onboarding />} /> */}
 
