@@ -1,28 +1,41 @@
 // src/App.jsx
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./Pages/Home";
-// import Onboarding from "./pages/Onboarding";
-// import Chat from "./pages/Chat";
 import SignIn from "./components/signin";
 import SignUp from "./components/signup";
 import ProfilePage from "./Pages/userProfile";
+import Emergency from './Pages/Emergency';
+import FindDoctor from './Pages/FindDoctor';
+import Navbar from "./components/navbar";
+import Footer from "./components/Footer";
 
 export default function App() {
+  const location = useLocation();
+
+  // Pages where Navbar & Footer should NOT show
+  const hideNavbar = location.pathname === "/signin" || location.pathname === "/signup";
+
   return (
-    <Routes>
-      {/* Home Page */}
-      <Route path="/" element={<Home />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      {/* Onboarding Page
-      <Route path="/onboarding" element={<Onboarding />} /> */}
+    <div className="flex flex-col min-h-screen">
+      {/* Navbar */}
+      {!hideNavbar && <Navbar />}
 
-      {/* Chatbot Page */}
-      {/* <Route path="/chat" element={<Chat />} /> */}
+      {/* Main content expands to push footer down */}
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/emergency" element={<Emergency />} />
+          <Route path="/doctors" element={<FindDoctor />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          {/* Redirect unknown routes to home */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </main>
 
-      {/* Redirect unknown routes */}
-      {/* <Route path="*" element={<Navigate to="/" />} /> */}
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
-    </Routes>
+      {/* Footer */}
+      {!hideNavbar && <Footer />}
+    </div>
   );
 }

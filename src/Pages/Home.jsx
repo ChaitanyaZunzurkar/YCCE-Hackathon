@@ -1,15 +1,18 @@
 // src/pages/Home.jsx
-import Navbar from "../components/navbar"
-import Footer from "../components/Footer";
+import { useAuth } from "../context/authContext";
+import OmniWidget from "../components/OmniWidget";
 
 export default function Home() {
+  const { token } = useAuth(); // check if user is logged in
+
   return (
     <div className="flex flex-col h-screen w-screen bg-gradient-to-r from-white to-sky-200 overflow-x-hidden">
-      <Navbar />
+
+      {/* Load the widget only if user is logged in */}
+      {token && <OmniWidget />}
 
       {/* Hero Section */}
       <main className="flex-1 flex flex-col items-center justify-center w-full p-6">
-
         <h1 className="text-3xl font-bold text-gray-800 text-center">
           Welcome to Virtual Doctor Assistant
         </h1>
@@ -49,8 +52,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }
