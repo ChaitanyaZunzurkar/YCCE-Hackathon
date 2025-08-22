@@ -2,9 +2,9 @@ import React from "react";
 
 export default function Emergency() {
   return (
-    <div className="min-h-screen w-screen bg-blue-50 py-10 px-6 flex flex-col gap-6">
+    <div className="min-h-screen bg-blue-50 py-10 px-6 flex flex-col gap-6">
       {/* Title */}
-      <h1 className="text-3xl font-bold text-sky-500 mb-2">🚨 Emergency Services</h1>
+      <h1 className="text-3xl font-bold text-blue-700 mb-2">🚨 Emergency Services</h1>
       <p className="text-gray-700 mb-4">
         Quick access to emergency help and resources
       </p>
@@ -18,7 +18,7 @@ export default function Emergency() {
         {/* Emergency Numbers */}
         <div className="bg-white shadow rounded-lg p-4">
           <h2 className="text-xl font-semibold text-blue-600 mb-3">📞 Emergency Numbers</h2>
-          <div className="space-y-4 grid grid-cols-2 gap-4">
+          <div className="space-y-4">
             {[
               { number: "108", title: "Medical Emergency", desc: "24/7 Ambulance Service" },
               { number: "100", title: "Police Emergency", desc: "Police Helpline" },
@@ -26,7 +26,7 @@ export default function Emergency() {
               { number: "1091", title: "Women Helpline", desc: "Women in Distress" },
               { number: "1098", title: "Child Helpline", desc: "Child Protection" },
             ].map((item) => (
-              <a key={item.number} href={`tel:${item.number}`} className="block bg-sky-200  text-white p-4 rounded-lg shadow flex justify-between items-center hover:bg-white hover:shadow-[0_0_15px_rgba(56,189,248,0.6)]  transition">
+              <a key={item.number} href={`tel:${item.number}`} className="block bg-blue-500 text-white p-4 rounded-lg shadow flex justify-between items-center hover:bg-blue-600 transition">
                 <div>
                   <div className="text-xl font-bold">{item.number}</div>
                   <div className="text-sm">{item.title}</div>
@@ -41,7 +41,7 @@ export default function Emergency() {
         {/* When to Call Emergency */}
         <div className="bg-white shadow rounded-lg p-4">
           <h2 className="text-xl font-semibold text-blue-500 mb-3">⏱️ When to Call Emergency Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 grid grid-cols-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Heart Problems */}
             <div className="bg-blue-50 border border-blue-200 p-3 rounded">
               <h3 className="font-semibold text-blue-600 mb-2">❤️ Heart Problems</h3>
@@ -105,10 +105,10 @@ export default function Emergency() {
 
         {/* Basic First Aid */}
         <div className="bg-white shadow rounded-lg p-4">
-          <h2 className="text-3xl font-semibold text-blue-700 mb-7">🧰 Basic First Aid</h2>
-          <div className="grid grid-cols-3 gap-4 bg-white">
-{/* Heart Attack */}
-          <div className="bg-white p-3 mb-3 rounded-sm shadow-lg shadow-gray-400 ">
+          <h2 className="text-xl font-semibold text-blue-700 mb-3">🧰 Basic First Aid</h2>
+
+          {/* Heart Attack */}
+          <div className="bg-blue-50 p-3 mb-3 rounded">
             <h3 className="text-blue-700 font-semibold mb-2">💓 Heart Attack</h3>
             <ol className="list-decimal pl-5 text-sm text-gray-700 space-y-1">
               <li>Call 108 immediately</li>
@@ -119,7 +119,7 @@ export default function Emergency() {
           </div>
 
           {/* Severe Bleeding */}
-          <div className="bg-white p-3 mb-3 rounded-sm shadow-lg shadow-gray-400">
+          <div className="bg-blue-50 p-3 mb-3 rounded">
             <h3 className="text-blue-700 font-semibold mb-2">🩸 Severe Bleeding</h3>
             <ol className="list-decimal pl-5 text-sm text-gray-700 space-y-1">
               <li>Apply direct pressure with clean cloth</li>
@@ -130,7 +130,7 @@ export default function Emergency() {
           </div>
 
           {/* High Fever */}
-          <div className="bg-white p-3 mb-3 shadow-lg rounded-sm shadow-gray-400">
+          <div className="bg-blue-50 p-3 mb-3 rounded">
             <h3 className="text-blue-700 font-semibold mb-2">🌡️ High Fever</h3>
             <ol className="list-decimal pl-5 text-sm text-gray-700 space-y-1">
               <li>Remove excess clothing</li>
@@ -139,69 +139,6 @@ export default function Emergency() {
               <li>Seek medical attention if over 103°F</li>
             </ol>
           </div>
-
- {/* Stroke */}
-<div className="bg-white p-3 mb-3 rounded-sm shadow-lg shadow-gray-400">
-  <h3 className="text-blue-700 font-semibold mb-2">🧠 Stroke</h3>
-  <ol className="list-decimal pl-5 text-sm text-gray-700 space-y-1">
-    <li>Call 108 immediately</li>
-    <li>Note the time symptoms started</li>
-    <li>Keep the person lying on their side (if unconscious)</li>
-    <li>Do not give food, drink, or medicine</li>
-  </ol>
-</div>
-
-{/* Severe Allergic Reaction */}
-<div className="bg-white p-3 mb-3 shadow-lg rounded-sm shadow-gray-400">
-  <h3 className="text-blue-700 font-semibold mb-2">🤧 Severe Allergic Reaction</h3>
-  <ol className="list-decimal pl-5 text-sm text-gray-700 space-y-1">
-    <li>Call emergency services immediately</li>
-    <li>If available, use an epinephrine auto-injector (EpiPen)</li>
-    <li>Keep person lying down with legs raised</li>
-    <li>Loosen tight clothing and monitor breathing</li>
-  </ol>
-</div>
-
-
-{/* Asthma Attack */}
-<div className="bg-white p-3 mb-3 shadow-lg rounded-sm shadow-gray-400">
-  <h3 className="text-blue-700 font-semibold mb-2">😮‍💨 Asthma Attack</h3>
-  <ol className="list-decimal pl-5 text-sm text-gray-700 space-y-1">
-    <li>Help the person sit upright (not lying down)</li>
-    <li>Assist in using prescribed inhaler</li>
-    <li>Stay calm and encourage slow breathing</li>
-    <li>If no improvement, call emergency services</li>
-  </ol>
-</div>
-
-
-{/* Seizures */}
-<div className="bg-white p-3 mb-3 shadow-lg rounded-sm shadow-gray-400">
-  <h3 className="text-blue-700 font-semibold mb-2">⚡ Seizures</h3>
-  <ol className="list-decimal pl-5 text-sm text-gray-700 space-y-1">
-    <li>Move harmful objects away to prevent injury</li>
-    <li>Do not restrain the person or put anything in mouth</li>
-    <li>Place person on their side after seizure stops</li>
-    <li>Call for emergency help if seizure lasts &gt;5 minutes</li>
-  </ol>
-</div>
-
-{/* Burns */}
-<div className="bg-whitep-3 mb-3 shadow-lg rounded-sm shadow-gray-400">
-  <h3 className="text-blue-700 font-semibold mb-2">🔥 Burns</h3>
-  <ol className="list-decimal pl-5 text-sm text-gray-700 space-y-1">
-    <li>Cool the burn with running cool (not ice-cold) water for 10–20 min</li>
-    <li>Remove tight clothing/jewelry near the burn area</li>
-    <li>Cover with a clean, non-stick cloth or gauze</li>
-    <li>Do not apply butter, oil, or toothpaste</li>
-  </ol>
-</div>
-
-
-
-
-          </div>
-          
         </div>
       </div>
     </div>

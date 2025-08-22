@@ -32,6 +32,7 @@ export default function App() {
         {/* Redirect unknown routes to home */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+        {!hideNavbar && <Footer />}
     </div>
   );
 }

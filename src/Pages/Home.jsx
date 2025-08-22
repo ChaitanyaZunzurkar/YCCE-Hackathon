@@ -22,18 +22,18 @@ export default function Home() {
         Integrated with India’s Ayushman Bharat Digital Health Mission
       </span>
     </p>
-    <div className="flex flex-row md:flex-row justify-center gap-4">
+    <div className="flex flex-row md:flex-row justify-center gap-4 group">
       <a
         href="#get-started"
-        className="px-6 py-3 border border-blue-300 bg-blue-300 text-white rounded-full font-semibold hover:bg-blue-300 transition"
+        className="px-6 py-3 border border-blue-300 bg-blue-300 text-white rounded-full font-semibold hover:bg-blue-300 transition group-hover:bg-transparent"
       >
    <span className="text-blue-900">        Get Started</span>
       </a>
       <a
         href="#learn-more"
-        className="px-6 py-3 border border-blue-300 text-green-600 rounded-full font-semibold hover:bg-green-100 transition"
+        className="px-6 py-3 border border-blue-300 text-blue-600 rounded-full font-semibold group-hover:bg-blue-300 hover:text-white transition"
       >
-        Learn More
+      <span className="text-blue-900">     Learn More </span>
       </a>
     </div>
     <img
