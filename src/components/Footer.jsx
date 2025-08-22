@@ -1,8 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white
-
-mt-10">
+    <footer className="bg-gray-900 text-white">
       
       {/* Multi-lingual / Country Selector Bar */}
       <div className="flex flex-row md:flex-row items-center justify-center gap-4 bg-gray-800 py-3">
