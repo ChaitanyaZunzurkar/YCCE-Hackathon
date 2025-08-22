@@ -21,7 +21,7 @@ export default function SignIn() {
       const { data } = await api.post("/auth/signin", form);
       // backend returns { message, user, token }
       login({ user: data.user || data.result, token: data.token });
-      nav("/chat", { replace: true });
+      nav("/", { replace: true });
     } catch (e) {
       setErr(e?.response?.data?.message || "Login failed");
     } finally {

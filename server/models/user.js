@@ -1,4 +1,4 @@
-// backend/models/user.js
+// models/user.js
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema(
     licenseNumber: {
       type: String,
     },
-    // For patients (optional fields like age, gender, history)
+    // For patients
     age: {
       type: Number,
     },
