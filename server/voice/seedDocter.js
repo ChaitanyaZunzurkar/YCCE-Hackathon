@@ -5,7 +5,7 @@
 import mongoose from "mongoose";
 
 // 1. MongoDB connection
-mongoose.connect("mongodb://127.0.0.1:27017/medicaldb", {
+mongoose.connect("mongod://127.0.0.1:27017/Arogyamitra", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
