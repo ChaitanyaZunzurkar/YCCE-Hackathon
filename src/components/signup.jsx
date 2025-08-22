@@ -74,72 +74,132 @@ export default function SignUp() {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
-      <div className="bg-white w-full max-w-lg p-6 rounded-2xl shadow">
-        <h2 className="text-2xl font-bold text-center">Create Account</h2>
+   <div className="min-h-screen w-screen flex items-center justify-center bg-gray-50 p-4 overflow-x-hidden">
+  <div className="bg-white w-full max-w-lg p-6 rounded-2xl shadow-lg">
+    <h2 className="text-2xl font-bold text-center text-black mb-6">Create Account</h2>
 
-        {err ? <p className="mt-3 text-sm text-red-600">{err}</p> : null}
+    {err && <p className="mt-3 text-sm text-red-600">{err}</p>}
 
-        <form onSubmit={onSubmit} className="mt-4 space-y-3">
-          <input className="w-full border p-2 rounded" name="name" placeholder="Full name" value={form.name} onChange={set} />
-          <input className="w-full border p-2 rounded" type="email" name="email" placeholder="Email" value={form.email} onChange={set} />
-          <input className="w-full border p-2 rounded" type="password" name="password" placeholder="Password (min 6 chars)" value={form.password} onChange={set} />
+    <form onSubmit={onSubmit} className="space-y-4 text-black">
+      {/* Name */}
+      <input
+        className="w-full border border-gray-300 p-3 rounded-lg bg-white text-black placeholder-black focus:bg-white focus:text-black focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition placeholder-font-bold"
+        name="name"
+        placeholder="Full Name"
+        value={form.name}
+        onChange={set}
+      />
 
-          {/* Role */}
-          <div className="grid grid-cols-2 gap-2">
-            <select className="border p-2 rounded" name="role" value={form.role} onChange={set}>
-              <option value="patient">Patient</option>
-              <option value="doctor">Doctor</option>
-              <option value="pharmacist">Pharmacist</option>
-              {/* Admin creation should be restricted to backend/DB */}
-            </select>
-            <input className="border p-2 rounded" name="phone" placeholder="Phone (optional)" value={form.phone} onChange={set} />
-          </div>
-          <input className="w-full border p-2 rounded" name="address" placeholder="Address (optional)" value={form.address} onChange={set} />
+      {/* Email */}
+      <input
+        className="w-full border border-gray-300 p-3 rounded-lg bg-white text-black placeholder-black focus:bg-white focus:text-black focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition placeholder-font-bold"
+        type="email"
+        name="email"
+        placeholder="Email"
+        value={form.email}
+        onChange={set}
+      />
 
-          {/* Patient-only */}
-          {form.role === "patient" && (
-            <div className="border rounded p-3 space-y-2">
-              <div className="grid grid-cols-2 gap-2">
-                <input className="border p-2 rounded" type="number" name="age" placeholder="Age" value={form.age} onChange={set} />
-                <select className="border p-2 rounded" name="gender" value={form.gender} onChange={set}>
-                  <option value="">Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div>
-                <p className="text-sm font-medium mb-1">Medical history</p>
-                <div className="grid grid-cols-2 gap-2">
-                  {MEDICAL_OPTIONS.map((m) => (
-                    <label key={m} className="flex items-center gap-2 border p-2 rounded">
-                      <input type="checkbox" checked={form.medicalHistory.includes(m)} onChange={() => toggleMedical(m)} />
-                      <span className="capitalize">{m}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
+      {/* Password */}
+      <input
+        className="w-full border border-gray-300 p-3 rounded-lg bg-white text-black placeholder-black focus:bg-white focus:text-black focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition placeholder-font-bold"
+        type="password"
+        name="password"
+        placeholder="Password (min 6 chars)"
+        value={form.password}
+        onChange={set}
+      />
 
-          {/* Doctor-only */}
-          {form.role === "doctor" && (
-            <div className="border rounded p-3 grid grid-cols-1 gap-2">
-              <input className="border p-2 rounded" name="specialization" placeholder="Specialization (e.g., General Physician)" value={form.specialization} onChange={set} />
-              <input className="border p-2 rounded" name="licenseNumber" placeholder="Medical Registration Number" value={form.licenseNumber} onChange={set} />
-            </div>
-          )}
-
-          <button disabled={loading} className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 disabled:opacity-50">
-            {loading ? "Creating account..." : "Sign Up"}
-          </button>
-        </form>
-
-        <p className="text-sm text-center mt-3">
-          Already have an account? <Link to="/signin" className="text-blue-600">Sign In</Link>
-        </p>
+      {/* Role + Phone */}
+      <div className="grid grid-cols-2 gap-2">
+        <select
+          className="border p-3 rounded-lg bg-white text-black focus:bg-white focus:text-black focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+          name="role"
+          value={form.role}
+          onChange={set}
+        >
+          <option value="patient">Patient</option>
+          <option value="doctor">Doctor</option>
+          <option value="pharmacist">Pharmacist</option>
+        </select>
+        <input
+          className="border p-3 rounded-lg bg-white text-black placeholder-black focus:bg-white focus:text-black focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+          name="phone"
+          placeholder="Phone (optional)"
+          value={form.phone}
+          onChange={set}
+        />
       </div>
-    </div>
+
+      {/* Address */}
+      <input
+        className="w-full border p-3 rounded-lg bg-white text-black placeholder-black focus:bg-white focus:text-black focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        name="address"
+        placeholder="Address (optional)"
+        value={form.address}
+        onChange={set}
+      />
+
+      {/* Patient fields */}
+      {form.role === "patient" && (
+        <div className="rounded-lg p-3 space-y-2">
+          <div className="grid grid-cols-2 gap-2">
+            <input
+              className="border p-3 rounded-lg bg-white text-black placeholder-black focus:bg-white focus:text-black focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+              type="number"
+              name="age"
+              placeholder="Age"
+              value={form.age}
+              onChange={set}
+            />
+            <select
+              className="border p-3 rounded-lg bg-white text-black focus:bg-white focus:text-black focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+              name="gender"
+              value={form.gender}
+              onChange={set}
+            >
+              <option value="">Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+      )}
+
+      {/* Doctor fields */}
+      {form.role === "doctor" && (
+        <div className="border rounded-lg p-3 grid grid-cols-1 gap-2">
+          <input
+            className="border p-3 rounded-lg bg-white text-black placeholder-black focus:bg-white focus:text-black focus:ring-2 focus:ring-blue-00 focus:border-blue-500 transition"
+            name="specialization"
+            placeholder="Specialization (e.g., General Physician)"
+            value={form.specialization}
+            onChange={set}
+          />
+          <input
+            className="border p-3 rounded-lg bg-white text-black placeholder-black focus:bg-white focus:text-black focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+            name="licenseNumber"
+            placeholder="Medical Registration Number"
+            value={form.licenseNumber}
+            onChange={set}
+          />
+        </div>
+      )}
+
+      <button
+        disabled={loading}
+        className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 disabled:opacity-50 font-bold transition"
+      >
+        {loading ? "Creating account..." : "Sign Up"}
+      </button>
+    </form>
+
+    <p className="text-sm text-center mt-3 text-black">
+      Already have an account? <Link to="/signin" className="text-blue-600 hover:underline">Sign In</Link>
+    </p>
+  </div>
+</div>
+
   );
 }
