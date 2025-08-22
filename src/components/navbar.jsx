@@ -43,7 +43,7 @@ export default function Navbar() {
         <Link to="/">Home</Link>
         <Link to="/chat">Chatbot</Link>
         <Link to="/doctors">Find Doctors</Link>
-        <Link to="/pharmacy">Pharmacy</Link>
+        <Link to="/emergency">Emergency</Link>
       </div>
 
       {/* Right: User Profile or Auth Buttons */}

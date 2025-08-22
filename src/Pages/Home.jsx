@@ -1,26 +1,15 @@
 // src/pages/Home.jsx
-import { useEffect } from "react";
-import Navbar from "../components/navbar";
-import Footer from "../components/Footer";
+import { useAuth } from "../context/authContext";
+import OmniWidget from "../components/OmniWidget";
 
 export default function Home() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.id = "omnidimension-web-widget";
-    script.src =
-      "https://backend.omnidim.io/web_widget.js?secret_key=d660b28c07732ced591f62e89a0ad0d2";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup script if component unmounts
-      document.getElementById("omnidimension-web-widget")?.remove();
-    };
-  }, []);
+  const { token } = useAuth(); // check if user is logged in
 
   return (
     <div className="flex flex-col h-screen w-screen bg-gradient-to-r from-white to-sky-200 overflow-x-hidden">
-      <Navbar />
+
+      {/* Load the widget only if user is logged in */}
+      {token && <OmniWidget />}
 
       {/* Hero Section */}
       <main className="flex-1 flex flex-col items-center justify-center w-full p-6">
@@ -63,8 +52,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }
