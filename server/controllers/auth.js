@@ -2,10 +2,9 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/user";
 
-// Signup
 export const signup = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, phone, address, specialization, licenseNumber, age, gender } = req.body;
 
     // check if user already exists
     const existingUser = await User.findOne({ email });
@@ -22,17 +21,39 @@ export const signup = async (req, res) => {
       email,
       password: hashedPassword,
       role,
+      phone,
+      address,
+      specialization,
+      licenseNumber,
+      age,
+      gender,
     });
 
     await newUser.save();
 
-    res.status(201).json({ message: "User created successfully" });
+    // generate JWT
+    const token = jwt.sign(
+      { id: newUser._id, role: newUser.role },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    res.status(201).json({
+      message: "User created successfully",
+      user: {
+        id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role,
+      },
+      token,
+    });
   } catch (error) {
-    res.status(500).json({ message: "Something went wrong", error });
+    res.status(500).json({ message: "Something went wrong", error: error.message });
   }
 };
 
-// Signin
+// ================== SIGNIN ==================
 export const signin = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -56,8 +77,30 @@ export const signin = async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.status(200).json({ result: user, token });
+    res.status(200).json({
+      message: "Login successful",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+      token,
+    });
   } catch (error) {
-    res.status(500).json({ message: "Something went wrong", error });
+    res.status(500).json({ message: "Something went wrong", error: error.message });
+  }
+};
+
+// ================== GET PROFILE (protected) ==================
+export const getProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password"); // exclude password
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong", error: error.message });
   }
 };

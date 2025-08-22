@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-const database = require("./config/database");
+const database = require("./config/db");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const {cloudinaryConnect } = require("./config/cloudinary");
@@ -33,8 +33,7 @@ app.use(
 cloudinaryConnect();
 
 //routes
-
-//def route
+app.use("/api/auth", authRoutes);
 
 app.get("/", (req, res) => {
 	return res.json({
