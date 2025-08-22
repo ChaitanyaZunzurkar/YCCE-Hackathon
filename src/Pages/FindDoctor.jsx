@@ -55,7 +55,7 @@ export default function FindDoctor() {
 </button> */}
 <button
   onClick={handleSearch}
-  className="px-8 py-1 bg-gradient-to-r from-sky-500 to-blue-700 text-white font-semibold rounded-lg shadow-md hover:from-blue-600 hover:to-sky-500 hover:shadow-lg transition"
+  className="px-8 py-1 bg-gradient-to-r from-sky-500 to-blue-700 text-white font-semibold rounded-lg shadow-ld hover:from-blue-600 hover:to-sky-500 hover:shadow-lg transition"
 >
   Search
 </button>
