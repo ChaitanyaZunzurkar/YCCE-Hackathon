@@ -1,48 +1,53 @@
-const express = require("express");
-const app = express();
+import express from "express";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import fileUpload from "express-fileupload";
 
-const database = require("./config/database");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
-const {cloudinaryConnect } = require("./config/cloudinary");
-const fileUpload = require("express-fileupload");
-const dotenv = require("dotenv");
+import { connect } from "./config/db.js";
+import { cloudinaryConnect } from "./config/cloudinary.js";
+import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/user.js";
 
 dotenv.config();
+const app = express();
 const PORT = process.env.PORT || 4000;
 
-//database connect
-database.connect();
-//middlewares
+// Database connect
+connect();
+
+// Middlewares
 app.use(express.json());
 app.use(cookieParser());
 app.use(
-	cors({
-		origin:"http://localhost:3000",
-		credentials:true,
-	})
-)
+  cors({
+    origin: "http://localhost:5173", 
+    credentials: true,
+  })
+);
 
 app.use(
-	fileUpload({
-		useTempFiles:true,
-		tempFileDir:"/tmp",
-	})
-)
-//cloudinary connection
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp",
+  })
+);
+
+// Cloudinary connection
 cloudinaryConnect();
 
-//routes
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes); 
 
-//def route
-
+// Test route
 app.get("/", (req, res) => {
-	return res.json({
-		success:true,
-		message:'Your server is up and running....'
-	});
+  return res.json({
+    success: true,
+    message: "Your server is up and running....",
+  });
 });
 
 app.listen(PORT, () => {
-	console.log(`App is running at ${PORT}`)
-})
+  console.log(`App is running at ${PORT}`);
+});
