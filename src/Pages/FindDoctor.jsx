@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from "../components/navbar";
-import Footer from "../components/Footer";
 
 const doctorsData = {
   Cardiology: [
@@ -28,7 +26,6 @@ export default function FindDoctor() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-r from-white to-sky-200">
-      <Navbar />
 
       <main className="flex-1 flex flex-col items-center justify-center p-6">
         <h1 className="text-3xl font-bold text-gray-800 text-center mb-6">
@@ -69,7 +66,6 @@ export default function FindDoctor() {
         </div>
       </main>
 
-      <Footer />
     </div>
   );
 }
