@@ -42,7 +42,7 @@ export default function Navbar() {
       <div className="space-x-6 text-gray-700 font-medium">
         <Link to="/">Home</Link>
         <Link to="/chat">Chatbot</Link>
-        <Link to="/doctors">Find Doctors</Link>
+        {/* <Link to="/doctors">Find Doctors</Link> */}
         <Link to="/pharmacy">Pharmacy</Link>
       </div>
 
@@ -64,20 +64,28 @@ export default function Navbar() {
 
           {/* 3️⃣ Added dropdown menu */}
           {showDropdown && (                                        
-            <div className="absolute right-0 mt-12 w-40 bg-white border rounded-lg shadow-lg flex flex-col">
-              <button
-                onClick={() => { navigate("/profile"); setShowDropdown(false); }}  // <-- Navigate to profile
-                className="px-4 py-2 text-left hover:bg-gray-100"
-              >
-                Profile
-              </button>
-              <button
-                onClick={handleLogout}                                   
-                className="px-4 py-2 text-left hover:bg-gray-100 text-red-500"
-              >
-                Logout
-              </button>
-            </div>
+           <div className="absolute right-0 mt-12 w-40 rounded-lg flex flex-col gap-2 p-2">
+  <button
+    onClick={() => { navigate("/profile"); setShowDropdown(false); }}
+    className="bg-sky-500 text-white rounded-full flex items-center justify-center 
+               cursor-pointer px-5 py-2 gap-2 shadow-sm
+               hover:bg-sky-600 hover:scale-105 hover:shadow-[0_8px_20px_rgba(0,0,0,0.2)]  
+               transition-all duration-300"
+  >
+    Profile
+  </button>
+
+  <button
+    onClick={handleLogout}
+    className="bg-sky-500 text-white rounded-full flex items-center justify-center 
+               cursor-pointer px-5 py-2 gap-2 shadow-sm
+               hover:bg-sky-600 hover:scale-105 hover:shadow-[0_8px_20px_rgba(0,0,0,0.2)] 
+               transition-all duration-300"
+  >
+    Logout
+  </button>
+</div>
+
           )}
         </div>
       ) : (
