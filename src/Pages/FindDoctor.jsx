@@ -47,12 +47,20 @@ export default function FindDoctor() {
           placeholder="Search by specialty..."
           className="px-4 py-2 border border-black placeholder-black rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-blue-600 "
         />
-        <button
-          onClick={handleSearch}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-        >
-          Search
-        </button>
+     {/* <button
+  onClick={handleSearch}
+  className="px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-blue-700 transition"
+>
+  Search
+</button> */}
+<button
+  onClick={handleSearch}
+  className="px-8 py-1 bg-gradient-to-r from-sky-500 to-blue-700 text-white font-semibold rounded-lg shadow-md hover:from-blue-600 hover:to-sky-500 hover:shadow-lg transition"
+>
+  Search
+</button>
+
+
       </div>
 
       <div className="flex justify-center gap-4 mb-6 flex-wrap">

@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 /* Chrome, Edge, Safari */
+/* Target only inputs, not buttons */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -13,9 +14,12 @@ input:-webkit-autofill:active {
 }
 
 /* Firefox */
-input:-moz-autofill {
-    box-shadow: 0 0 0px 1000px white inset !important;
-    -moz-text-fill-color: black !important;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    -webkit-text-fill-color: black !important;
 }
 
 
