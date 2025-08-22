@@ -6,7 +6,7 @@ mt-10">
       
       {/* Multi-lingual / Country Selector Bar */}
       <div className="flex flex-row md:flex-row items-center justify-center gap-4 bg-gray-800 py-3">
-        <div className="flex items-center gap-2">
+        {/* <div className="flex items-center gap-2"> */}
           
           <select className="bg-gray-700 text-white px-2 py-1 rounded ">
             
@@ -14,7 +14,7 @@ mt-10">
             <option><span>🌐</span>हिन्दी</option>
             <option><span>🌐</span>मराठी</option>
           </select>
-        </div>
+        {/* </div> */}
        <div className="flex items-center gap-4">
   <span className="flex items-center gap-2 bg-gray-700 text-white font-medium px-4 py-1 rounded-sm">
     <img
