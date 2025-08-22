@@ -1,75 +1,91 @@
 import React, { useState } from 'react';
-import Navbar from "../components/navbar";
-import Footer from "../components/Footer";
 
-const doctorsData = {
-  Cardiology: [
-    { id: 1, name: 'Dr. Smith', specialty: 'Cardiology', location: 'New York', phone: '555-1111' },
-    { id: 2, name: 'Dr. Jones', specialty: 'Cardiology', location: 'Los Angeles', phone: '555-2222' },
-  ],
-  Dermatology: [
-    { id: 3, name: 'Dr. Davis', specialty: 'Dermatology', location: 'Chicago', phone: '555-3333' },
-    { id: 4, name: 'Dr. Miller', specialty: 'Dermatology', location: 'Houston', phone: '555-4444' },
-  ],
-  Pediatrics: [
-    { id: 5, name: 'Dr. Garcia', specialty: 'Pediatrics', location: 'Phoenix', phone: '555-5555' },
-    { id: 6, name: 'Dr. Rodriguez', specialty: 'Pediatrics', location: 'Philadelphia', phone: '555-6666' },
-  ],
-  Neurology: [
-    { id: 7, name: 'Dr. Martinez', specialty: 'Neurology', location: 'San Antonio', phone: '555-7777' },
-    { id: 8, name: 'Dr. Hernandez', specialty: 'Neurology', location: 'San Diego', phone: '555-8888' },
-  ],
-};
+const doctorsData = [
+  { name: 'Dr. Swarup P. Verma', specialty: 'Internal Medicine', hospital: 'Wockhardt Super Speciality Hospital, Shankar Nagar', experience: '17 साल', fee: '₹1,000' },
+  { name: 'Dr. Nitin Wadaskar', specialty: 'Internal Medicine', hospital: 'Max Super Speciality Hospital, Mankapur', experience: '20 साल', fee: '₹750' },
+  { name: 'Dr. Nimaj Agarwal', specialty: 'General Physician', hospital: 'Max Super Speciality Hospital, Mankapur (+1 location)', experience: '13 साल', fee: '₹800' },
+  { name: 'Dr. Afzal Sheikh', specialty: 'General Physician', hospital: 'Nelson Hospital, Dhantoli', experience: '18 साल', fee: '₹800' },
+  { name: 'Dr. Nitin Tiwari', specialty: 'Cardiologist', hospital: 'Wockhardt Super Speciality Hospital, Shankar Nagar', experience: '28 साल', fee: '₹1,000' },
+  { name: 'Dr. Suryashree Pandey', specialty: 'Nephrologist', hospital: 'Wockhardt Super Speciality Hospital, Shankar Nagar', experience: '27 साल', fee: '₹1,000' },
+  { name: 'Dr. Piyush Marudwar', specialty: 'Gastroenterologist', hospital: 'Wockhardt Super Speciality Hospital, Shankar Nagar', experience: '16 साल', fee: '₹1,200' },
+  { name: 'Dr. Shrikant Jai', specialty: 'Urologist', hospital: 'Wockhardt Super Speciality Hospital, Shankar Nagar (+1 location)', experience: '15 साल', fee: '₹1,200' },
+  { name: 'Dr. Kadoo Priyanka Vijay', specialty: 'Gynecologist / Obstetrician', hospital: 'Birla Fertility & IVF, Sitabuldi', experience: '19 साल', fee: '₹800' },
+  { name: 'Dr. Dipti Shinde', specialty: 'Gynaecologist', hospital: 'Wockhardt Super Speciality Hospital, Nagpur', experience: '15 साल', fee: '₹1,000' },
+  { name: 'Dr. Riya Mangtani', specialty: 'Gynaecologist', hospital: 'Wockhardt Super Speciality Hospital, Nagpur', experience: '11 साल', fee: '₹800' },
+  { name: 'Dr. Shantanu S Pendse', specialty: 'Oncologist', hospital: 'HCG NCHRI Cancer Centre, Nagpur', experience: '9 साल', fee: 'N/A' },
+  { name: 'Dr. Nishad Dhakate', specialty: 'Hemato-Oncologist', hospital: 'HCG NCHRI Cancer Centre, Nagpur', experience: '9 साल', fee: '₹950' },
+  { name: 'Dr. Ajay Mehta', specialty: 'Surgical Oncologist', hospital: 'HCG NCHRI Cancer Centre, Nagpur', experience: '36 साल', fee: '₹950' },
+  { name: 'Dr. Sidharth Saoji', specialty: 'ENT Specialist', hospital: 'Wockhardt Super Speciality Hospital, Nagpur', experience: '8 साल', fee: '₹800' },
+  { name: 'Dr. Hemant Chhajed', specialty: 'General Surgeon', hospital: 'Wockhardt Super Speciality Hospital, Nagpur', experience: '24 साल', fee: '₹1,000' },
+  { name: 'Dr. Ram Godeswar', specialty: 'Cardiologist', hospital: 'CARE Hospital, Nagpur', experience: '34 साल', fee: '₹600' },
+  { name: 'Dr. Varun Bhargava', specialty: 'Cardiologist', hospital: 'CARE Hospital, Nagpur', experience: '22 साल', fee: '₹800' },
+];
+
+const domains = ['Cardiologist', 'Gynaecologist', 'General Physician', 'Oncologist'];
 
 export default function FindDoctor() {
-  const [selectedDomain, setSelectedDomain] = useState('Cardiology');
+  const [selectedDomain, setSelectedDomain] = useState('');
+  const [searchInput, setSearchInput] = useState('');
 
-  const doctorsInDomain = doctorsData[selectedDomain] || [];
+  const handleSearch = () => {
+    setSelectedDomain(searchInput);
+  };
+
+  const filteredDoctors = doctorsData.filter(doc =>
+    selectedDomain ? doc.specialty.toLowerCase().includes(selectedDomain.toLowerCase()) : true
+  );
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-r from-white to-sky-200">
-      <Navbar />
+    <div className="min-h-screen bg-blue-50 p-6">
+      <h1 className="text-3xl font-bold text-blue-800 text-center mb-6">Find a Doctor</h1>
 
-      <main className="flex-1 flex flex-col items-center justify-center p-6">
-        <h1 className="text-3xl font-bold text-gray-800 text-center mb-6">
-          Find a Doctor by Specialty
-        </h1>
+      <div className="flex flex-col md:flex-row justify-center gap-4 mb-6 items-center">
+        <input
+          type="text"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          placeholder="Search by specialty..."
+          className="px-4 py-2 border rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+        <button
+          onClick={handleSearch}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+        >
+          Search
+        </button>
+      </div>
 
-        <div className="mb-8">
-          <label htmlFor="domain-select" className="mr-2 text-gray-700 font-medium">
-            Select a Specialty:
-          </label>
-          <select
-            id="domain-select"
-            value={selectedDomain}
-            onChange={(e) => setSelectedDomain(e.target.value)}
-            className="p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+      <div className="flex justify-center gap-4 mb-6 flex-wrap">
+        {domains.map((domain, index) => (
+          <button
+            key={index}
+            onClick={() => setSelectedDomain(domain)}
+            className={`px-4 py-2 rounded-full border ${selectedDomain === domain ? 'bg-blue-600 text-white' : 'bg-blue-100 text-blue-700'} hover:bg-blue-200 transition`}
           >
-            {Object.keys(doctorsData).map((domain) => (
-              <option key={domain} value={domain}>
-                {domain}
-              </option>
-            ))}
-          </select>
-        </div>
+            {domain}
+          </button>
+        ))}
+        {selectedDomain && (
+          <button
+            onClick={() => setSelectedDomain('')}
+            className="px-4 py-2 rounded-full bg-red-100 text-red-700 hover:bg-red-200 transition"
+          >
+            Clear
+          </button>
+        )}
+      </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
-          {doctorsInDomain.length > 0 ? (
-            doctorsInDomain.map((doctor) => (
-              <div key={doctor.id} className="bg-white p-4 rounded-2xl shadow-md">
-                <h2 className="text-xl font-semibold text-blue-600 mb-2">{doctor.name}</h2>
-                <p className="text-gray-700">Specialty: {doctor.specialty}</p>
-                <p className="text-gray-700">Location: {doctor.location}</p>
-                <p className="text-gray-700">Phone: {doctor.phone}</p>
-              </div>
-            ))
-          ) : (
-            <p className="text-gray-600">No doctors found for this specialty.</p>
-          )}
-        </div>
-      </main>
-
-      <Footer />
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredDoctors.map((doc, index) => (
+          <div key={index} className="bg-blue-100 border border-blue-200 p-4 rounded-xl shadow hover:shadow-lg transition">
+            <h2 className="text-xl font-semibold text-blue-900">{doc.name}</h2>
+            <p className="text-blue-700 font-medium">{doc.specialty}</p>
+            <p className="text-sm text-blue-600">{doc.hospital}</p>
+            <p className="text-sm text-blue-600">Experience: {doc.experience}</p>
+            <p className="text-sm font-bold text-blue-800">Fee: {doc.fee}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
