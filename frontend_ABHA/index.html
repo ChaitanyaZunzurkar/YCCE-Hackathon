@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ABHA-Linked Smart Healthcare (Demo)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 0; padding: 0; background: #0b1020; color: #eaf0ff; }
+    header { padding: 20px; text-align: center; background: #151a30; position: sticky; top: 0; }
+    main { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; }
+    section { background: #141a2a; border-radius: 14px; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+    h2 { margin: 0 0 10px; }
+    label { display: block; margin: 8px 0 4px; color: #cbd5ff; }
+    input, select { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #334; background: #0f1424; color: #eaf0ff; }
+    button { margin-top: 10px; padding: 10px 14px; border-radius: 10px; border: 0; background: #4f7cff; color: white; cursor: pointer; }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    pre, code { white-space: pre-wrap; background: #0f1424; padding: 10px; border-radius: 10px; }
+    .pill { display: inline-block; padding: 4px 8px; border-radius: 20px; background: #223; margin-right: 8px; margin-bottom: 6px; }
+    img { max-width: 100%; }
+    @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ABHA-Linked Smart Healthcare (USP Demo)</h1>
+    <div>ABDM Sandbox (Mock) • Create ABHA → Link → Fetch Records → Emergency QR</div>
+  </header>
+  <main>
+    <section id="create">
+      <h2>1) Create ABHA (Mock)</h2>
+      <div class="row">
+        <div>
+          <label>Aadhaar (demo)</label>
+          <input id="aadhaar" placeholder="0000-0000-0000" />
+        </div>
+        <div>
+          <label>Last Name</label>
+          <input id="lastName" placeholder="Devi" />
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Year of Birth</label>
+          <input id="yob" placeholder="1987" />
+        </div>
+        <div>
+          <label>Gender</label>
+          <select id="gender">
+            <option value="F">Female</option>
+            <option value="M">Male</option>
+            <option value="O">Other</option>
+          </select>
+        </div>
+      </div>
+      <label>Mobile</label>
+      <input id="mobile" placeholder="+91-9XXXXXXXXX" />
+      <button id="btnCreate">Create ABHA</button>
+      <div id="createOut"></div>
+    </section>
+
+    <section id="verify">
+      <h2>2) Link/Verify</h2>
+      <label>ABHA ID</label>
+      <input id="abhaId" placeholder="(auto-filled after create)"/>
+      <label>OTP (any 6 digits)</label>
+      <input id="otp" placeholder="123456"/>
+      <button id="btnLink">Verify & Link</button>
+      <div id="linkOut"></div>
+    </section>
+
+    <section id="records">
+      <h2>3) Fetch Health Records</h2>
+      <label>ABHA ID</label>
+      <input id="abhaId2" placeholder="(same as above)"/>
+      <button id="btnRecords">Get Records</button>
+      <pre id="recordsOut"></pre>
+    </section>
+
+    <section id="emergency">
+      <h2>4) Emergency QR</h2>
+      <label>ABHA ID</label>
+      <input id="abhaId3" placeholder="(same as above)"/>
+      <button id="btnQR">Generate QR</button>
+      <div id="qrOut"></div>
+    </section>
+  </main>
+
+  <script>
+    const API = "http://localhost:5050";
+
+    const el = (id) => document.getElementById(id);
+    const btnCreate = el('btnCreate');
+    const btnLink = el('btnLink');
+    const btnRecords = el('btnRecords');
+    const btnQR = el('btnQR');
+
+    btnCreate.onclick = async () => {
+      btnCreate.disabled = true;
+      try {
+        const body = {
+          aadhaar: el('aadhaar').value || "0000-0000-0000",
+          lastName: el('lastName').value || "Devi",
+          yearOfBirth: el('yob').value || "1987",
+          gender: el('gender').value || "F",
+          mobile: el('mobile').value || "+91-9000000000"
+        };
+        const r = await fetch(API + "/api/abha/create", {
+          method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body)
+        });
+        const data = await r.json();
+        el('createOut').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        if (data.abhaId) {
+          el('abhaId').value = data.abhaId;
+          el('abhaId2').value = data.abhaId;
+          el('abhaId3').value = data.abhaId;
+        }
+      } catch (e) {
+        el('createOut').innerHTML = `<pre>${e.message}</pre>`;
+      } finally {
+        btnCreate.disabled = false;
+      }
+    };
+
+    btnLink.onclick = async () => {
+      btnLink.disabled = true;
+      try {
+        const body = { abhaId: el('abhaId').value, otp: el('otp').value || "123456" };
+        const r = await fetch(API + "/api/abha/link", {
+          method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body)
+        });
+        const data = await r.json();
+        el('linkOut').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } catch (e) {
+        el('linkOut').innerHTML = `<pre>${e.message}</pre>`;
+      } finally {
+        btnLink.disabled = false;
+      }
+    };
+
+    btnRecords.onclick = async () => {
+      btnRecords.disabled = true;
+      try {
+        const abhaId = el('abhaId2').value;
+        const r = await fetch(API + "/api/abha/records?abhaId=" + encodeURIComponent(abhaId));
+        const data = await r.json();
+        el('recordsOut').textContent = JSON.stringify(data, null, 2);
+      } catch (e) {
+        el('recordsOut').textContent = e.message;
+      } finally {
+        btnRecords.disabled = false;
+      }
+    };
+
+    btnQR.onclick = async () => {
+      btnQR.disabled = true;
+      try {
+        const abhaId = el('abhaId3').value;
+        const r = await fetch(API + "/api/abha/emergency-card?abhaId=" + encodeURIComponent(abhaId));
+        const data = await r.json();
+        if (data.qrDataUrl) {
+          el('qrOut').innerHTML = `
+            <div><strong>Essentials</strong></div>
+            <div class="pill">Blood Group: ${data.essentials.bloodGroup}</div>
+            <div class="pill">Allergies: ${data.essentials.allergies.join(", ")}</div>
+            <div class="pill">Emergency Contact: ${data.essentials.emergencyContact}</div>
+            <div style="margin-top:10px;"><img src="${data.qrDataUrl}" alt="Emergency QR"/></div>
+          `;
+        } else {
+          el('qrOut').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        }
+      } catch (e) {
+        el('qrOut').textContent = e.message;
+      } finally {
+        btnQR.disabled = false;
+      }
+    };
+  </script>
+</body>
+</html>
