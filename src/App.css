@@ -5,6 +5,12 @@
   text-align: center;
 }
 
+
+.animate-gradient-slow {
+  background-size: 200% 200%;
+  animation: gradient-slow 8s ease infinite;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

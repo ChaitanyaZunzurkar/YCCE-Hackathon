@@ -3,28 +3,14 @@ export default function Footer() {
     <footer className="bg-gray-900 text-white">
       
       {/* Multi-lingual / Country Selector Bar */}
-      <div className="flex flex-row md:flex-row items-center justify-center gap-4 bg-gray-800 py-3">
+      <a className="flex flex-row md:flex-row items-center justify-center gap-4 bg-gray-800 py-3 mx-auto" href="http://localhost:5173/">
         {/* <div className="flex items-center gap-2"> */}
           
-          <select className="bg-gray-700 text-white px-2 py-1 rounded ">
-            
-            <option><span>🌐</span>English</option>
-            <option><span>🌐</span>हिन्दी</option>
-            <option><span>🌐</span>मराठी</option>
-          </select>
-        {/* </div> */}
-       <div className="flex items-center gap-4">
-  <span className="flex items-center gap-2 bg-gray-700 text-white font-medium px-4 py-1 rounded-sm">
-    <img
-      src="src/assets/flag.svg"
-      alt="India"
-      className="w-5 h-5 rounded-sm"
-    />
-    India
-  </span>
-</div>
+          <a href="http://localhost:5173/" alt="" className="font-bold text-xl">
+          <span className="text-white">   Back to Top</span>
+        </a>
 
-      </div>
+      </a>
 
       {/* Links Section */}
       <div className="max-w-7xl mx-auto px-6 py-8 grid grid-rows-1 sm:grid-cols-2 md:grid-cols-4 gap-8">

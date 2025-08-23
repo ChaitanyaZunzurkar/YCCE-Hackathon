@@ -14,36 +14,22 @@ export default function ChatInput({ onSend, loading }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="p-4 border-t bg-white flex items-center space-x-2 shadow-inner"
+      className="p-4 bg-transparent flex items-center space-x-2 shadow-inner  "
     >
       <input
         type="text"
         value={userQuery}
         onChange={(e) => setUserQuery(e.target.value)}
         placeholder="Ask something..."
-        className="flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="flex-1 border border-black rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-black text-black "
       />
-
-      <input
-        type="file"
-        accept="application/pdf"
-        onChange={(e) => setPdfFile(e.target.files[0])}
-        className="hidden"
-        id="pdfUpload"
-      />
-      <label
-        htmlFor="pdfUpload"
-        className="cursor-pointer bg-gray-200 px-3 py-2 rounded-lg text-sm hover:bg-gray-300"
-      >
-        📎
-      </label>
 
       <button
         type="submit"
         disabled={loading}
-        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+        className="bg-gradient-to-r from-blue-900 to-blue-900 text-white px-8 py-2 mx-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
       >
-        Send
+       <span className="font-bold text-white"> Send</span>
       </button>
     </form>
   );

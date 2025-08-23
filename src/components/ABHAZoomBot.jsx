@@ -4,11 +4,10 @@ import ChatInput from "./ChatInput";
 // import VoiceAssistant from './VoiceAssistan'
 
 
-export default function AIReportAnalyzer() {
+export default function ABHAZoomBot() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
-  const [showVoiceAssistant, setShowVoiceAssistant] = useState(true);
 
   // Auto scroll when messages or loading change
   useEffect(() => {

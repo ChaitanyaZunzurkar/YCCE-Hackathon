@@ -16,24 +16,32 @@ export default function Home() {
     <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6">
       Your Virtual Doctor, Anywhere, Anytime
     </h1>
+    {/* <h1 className="text-4xl md:text-6xl font-extrabold mb-6 
+  bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-700 
+  bg-clip-text text-transparent">
+  Your Virtual Doctor, Anywhere, Anytime
+</h1> */}
+
+    
     <p className="text-lg md:text-2xl text-gray-700 mb-8">
       Access primary healthcare from the comfort of your home. Collect symptoms, get initial diagnoses, and connect with telemedicine portals seamlessly.  
       <span className="block mt-2 font-bold text-blue-800">
         Integrated with India’s Ayushman Bharat Digital Health Mission
       </span>
     </p>
-    <div className="flex flex-row md:flex-row justify-center gap-4">
+    <div className="flex group flex-row md:flex-row justify-center gap-4">
       <a
-        href="#get-started"
-        className="px-6 py-3 border border-blue-300 bg-blue-300 text-white rounded-full font-semibold hover:bg-blue-300 transition"
+        href="http://localhost:5173/chat"
+        className="px-6 py-3 border border-blue-300 bg-blue-300 text-white rounded-full font-semibold group-hover:bg-transparent transition group cursor-pointer"
       >
    <span className="text-blue-900">        Get Started</span>
       </a>
       <a
-        href="#learn-more"
-        className="px-6 py-3 border border-blue-300 text-green-600 rounded-full font-semibold hover:bg-green-100 transition"
+        href="http://localhost:5173/emergency"
+        className="px-6 py-3 border border-blue-300 rounded-full font-semibold group-hover:bg-blue-300 transition cursor-pointer"
       >
-        Learn More
+        <span className="text-blue-900">Learn More</span>
+        
       </a>
     </div>
     <img
@@ -44,47 +52,6 @@ export default function Home() {
   </div>
 </section>
 
-
-      {/* <main className="flex-1 flex flex-col items-center justify-center w-full p-6"> */}
-        {/* <h1 className="text-3xl font-bold text-gray-800 text-center">
-          Welcome to Virtual Doctor Assistant
-        </h1>
-        <p className="mt-2 text-gray-600 text-center max-w-md">
-          Get quick medical guidance, consult our chatbot, or find doctors and
-          pharmacies nearby.
-        </p>
-
-        {/* Features */}
-        {/* <div className="grid md:grid-cols-2 gap-6 mt-10 w-full max-w-5xl"> */}
-          {/* Find Nearby Doctor */}
-          {/* <div className="bg-white p-4 rounded-2xl shadow"> */}
-            {/* <h2 className="text-lg font-semibold text-blue-600 mb-2"> */}
-              {/* 🩺 Find Nearby Doctors */}
-            {/* </h2>
-            <iframe
-              title="Nearby Doctors"
-              className="w-full h-64 rounded-lg"
-              src="https://www.google.com/maps/embed/v1/search?key=YOUR_GOOGLE_MAPS_API_KEY&q=doctor+near+me"
-              allowFullScreen
-              loading="lazy"
-            ></iframe>
-          </div> */}
-
-          {/* Find Nearby Medical Store */}
-          {/* <div className="bg-white p-4 rounded-2xl shadow">
-            <h2 className="text-lg font-semibold text-green-600 mb-2">
-              💊 Find Medical Stores Nearby
-            </h2>
-            <iframe
-              title="Nearby Medical Stores"
-              className="w-full h-64 rounded-lg"
-              src="https://www.google.com/maps/embed/v1/search?key=YOUR_GOOGLE_MAPS_API_KEY&q=pharmacy+near+me"
-              allowFullScreen
-              loading="lazy"
-            ></iframe>
-          </div>
-        </div>
-      </main> */} 
     </div>
   );
 }
