@@ -1,94 +1,51 @@
-import { useState, useRef, useEffect } from "react";
-import ChatWindow from "./ChatWindow";
-import ChatInput from "./ChatInput";
-// import VoiceAssistant from './VoiceAssistan'
+import { useLocation } from "react-router-dom";
+import ChatMessage from "./ChatMessage";
+import ChatInput from "./ChatInput"; // ✅ make sure you import this
 
-
-export default function AIReportAnalyzer() {
-  const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const chatEndRef = useRef(null);
-  const [showVoiceAssistant, setShowVoiceAssistant] = useState(true);
-
-  // Auto scroll when messages or loading change
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, loading]);
-
-  const sendMessage = async (userQuery, pdfFile) => {
-    if (!userQuery.trim() && !pdfFile) return;
-
-    // if (showVoiceAssistant) {
-    //   setShowVoiceAssistant(false);
-    // }
-
-
-    // Show user message instantly
-    setMessages((prev) => [
-      ...prev,
-      { sender: "user", text: userQuery, pdf: pdfFile?.name },
-    ]);
-
-    setLoading(true);
-
-    try {
-      const formData = new FormData();
-      formData.append("user_query", userQuery);
-      if (pdfFile) formData.append("pdf_file", pdfFile);
-
-      const res = await fetch("http://127.0.0.1:8000/ask", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!res.ok) {
-        throw new Error(`Server error: ${res.status}`);
-      }
-
-      const data = await res.json();
-      console.log("API Response:", data); // 👈 debug log
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          sender: "bot",
-          text: data.response || "⚠️ No response field in server reply.",
-        },
-      ]);
-    } catch (err) {
-      console.error("Fetch error:", err);
-      setMessages((prev) => [
-        ...prev,
-        { sender: "bot", text: "⚠️ Error connecting to server." },
-      ]);
-    } finally {
-      setLoading(false);
-    }
-  };
+export default function ChatWindow({ messages, loading, chatEndRef, onSend }) {
+  const location = useLocation();
+  const path = location.pathname;
 
   return (
-      <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 overflow-x-hidden w-screen ">
+    // ✅ One single card
+    <div className="flex flex-col w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden relative">
+      
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-slow opacity-50 blur-[30px]"></div>
 
-      {/* Header */}
-      {/* <div className="bg-blue-600 text-white p-4 text-xl font-bold shadow-md flex items-center mx-auto w-[50%] mt-2"> */}
-        {/* <span className="mr-2">🩺</span> AI Report Analyzer */}
-      {/* </div> */}
+      {/* Chat content area */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        {/* Heading */}
+        <span className="block text-black font-bold text-2xl text-center mb-4">
+          {path === "/chat"
+            ? "Smart health reports in seconds 🩺"
+            : path === "/abha-bot"
+            ? "Book virtual appointment with doctor"
+            : ""}
+        </span>
 
-      {/* {showVoiceAssistant && (
-        <div className="flex justify-center p-4">
-          <VoiceAssistant onResult={(transcript) => sendMessage(transcript)} />
-        </div>
-      )} */}
+        {/* Messages */}
+        {messages?.map((msg, idx) => (
+          <ChatMessage key={idx} msg={msg} />
+        ))}
 
-      {/* Chat Window */}
-      <ChatWindow
-        messages={messages}
-        loading={loading}
-        chatEndRef={chatEndRef}
-      />
+        {/* Loading indicator */}
+        {loading && (
+          <div className="flex justify-start">
+            <div className="px-4 py-2 bg-gray-100 text-gray-600 rounded-2xl rounded-bl-none shadow-md animate-pulse">
+              AI is typing...
+            </div>
+          </div>
+        )}
 
-      {/* Input */}
-      <ChatInput onSend={sendMessage} loading={loading} />
+        {/* Reference to auto-scroll */}
+        <div ref={chatEndRef} />
+      </div>
+
+      {/* ✅ Input area inside the same box */}
+      <div className="border-t p-3 bg-gray-50">
+        <ChatInput onSend={onSend} />
+      </div>
     </div>
   );
 }

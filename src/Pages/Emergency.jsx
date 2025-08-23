@@ -41,7 +41,7 @@ export default function Emergency() {
         {/* When to Call Emergency */}
         <div className="bg-white shadow rounded-lg p-4">
           <h2 className="text-xl font-semibold text-blue-500 mb-3">⏱️ When to Call Emergency Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 grid grid-cols-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 grid grid-cols-2 ">
             {/* Heart Problems */}
             <div className="bg-blue-50 border border-blue-200 p-3 rounded">
               <h3 className="font-semibold text-blue-600 mb-2">❤️ Heart Problems</h3>

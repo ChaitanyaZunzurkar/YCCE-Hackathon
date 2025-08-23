@@ -22,8 +22,7 @@ export default function App() {
       {/* Navbar */}
       {!hideNavbar && <Navbar />}
 
-      {/* Main content expands to push footer down */}
-      <main className="flex-grow">
+            <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<ProfilePage />} />
