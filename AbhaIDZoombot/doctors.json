@@ -1,0 +1,154 @@
+[
+  {
+    "name": "Dr. Swarup P. Verma",
+    "specialization": "Internal Medicine",
+    "hospital": "Wockhardt Super Speciality Hospital, Shankar Nagar",
+    "experience": 17,
+    "fee": 1000,
+    "slots": ["10:00 AM", "11:30 AM", "3:00 PM"]
+  },
+  {
+    "name": "Dr. Nitin Wadaskar",
+    "specialization": "Internal Medicine",
+    "hospital": "Max Super Speciality Hospital, Mankapur",
+    "experience": 20,
+    "fee": 750,
+    "slots": ["9:30 AM", "1:00 PM", "5:00 PM"]
+  },
+  {
+    "name": "Dr. Nimaj Agarwal",
+    "specialization": "General Physician",
+    "hospital": "Max Super Speciality Hospital, Mankapur (+1 location)",
+    "experience": 13,
+    "fee": 800,
+    "slots": ["10:30 AM", "12:00 PM", "4:30 PM"]
+  },
+  {
+    "name": "Dr. Afzal Sheikh",
+    "specialization": "General Physician",
+    "hospital": "Nelson Hospital, Dhantoli",
+    "experience": 18,
+    "fee": 800,
+    "slots": ["9:00 AM", "2:30 PM", "6:00 PM"]
+  },
+  {
+    "name": "Dr. Nitin Tiwari",
+    "specialization": "Cardiologist",
+    "hospital": "Wockhardt Super Speciality Hospital, Shankar Nagar",
+    "experience": 28,
+    "fee": 1000,
+    "slots": ["11:00 AM", "1:30 PM", "5:00 PM"]
+  },
+  {
+    "name": "Dr. Suryashree Pandey",
+    "specialization": "Nephrologist",
+    "hospital": "Wockhardt Super Speciality Hospital, Shankar Nagar",
+    "experience": 27,
+    "fee": 1000,
+    "slots": ["10:00 AM", "12:30 PM", "3:30 PM"]
+  },
+  {
+    "name": "Dr. Piyush Marudwar",
+    "specialization": "Gastroenterologist",
+    "hospital": "Wockhardt Super Speciality Hospital, Shankar Nagar",
+    "experience": 16,
+    "fee": 1200,
+    "slots": ["9:30 AM", "1:00 PM", "4:30 PM"]
+  },
+  {
+    "name": "Dr. Shrikant Jai",
+    "specialization": "Urologist",
+    "hospital": "Wockhardt Super Speciality Hospital, Shankar Nagar (+1 location)",
+    "experience": 15,
+    "fee": 1200,
+    "slots": ["10:00 AM", "2:00 PM", "6:00 PM"]
+  },
+  {
+    "name": "Dr. Kadoo Priyanka Vijay",
+    "specialization": "Gynecologist / Obstetrician",
+    "hospital": "Birla Fertility & IVF, Sitabuldi",
+    "experience": 19,
+    "fee": 800,
+    "slots": ["9:30 AM", "12:00 PM", "3:30 PM"]
+  },
+  {
+    "name": "Dr. Dipti Shinde",
+    "specialization": "Gynaecologist",
+    "hospital": "Wockhardt Super Speciality Hospital, Nagpur",
+    "experience": 15,
+    "fee": 1000,
+    "slots": ["10:00 AM", "1:30 PM", "5:00 PM"]
+  },
+  {
+    "name": "Dr. Riya Mangtani",
+    "specialization": "Gynaecologist",
+    "hospital": "Wockhardt Super Speciality Hospital, Nagpur",
+    "experience": 11,
+    "fee": 800,
+    "slots": ["9:00 AM", "11:30 AM", "4:00 PM"]
+  },
+  {
+    "name": "Dr. Shantanu S Pendse",
+    "specialization": "Oncologist",
+    "hospital": "HCG NCHRI Cancer Centre, Nagpur",
+    "experience": 9,
+    "fee": null,
+    "slots": ["10:30 AM", "2:00 PM"]
+  },
+  {
+    "name": "Dr. Nishad Dhakate",
+    "specialization": "Hemato-Oncologist",
+    "hospital": "HCG NCHRI Cancer Centre, Nagpur",
+    "experience": 9,
+    "fee": 950,
+    "slots": ["11:00 AM", "3:00 PM", "6:00 PM"]
+  },
+  {
+    "name": "Dr. Ajay Mehta",
+    "specialization": "Surgical Oncologist",
+    "hospital": "HCG NCHRI Cancer Centre, Nagpur",
+    "experience": 36,
+    "fee": 950,
+    "slots": ["9:30 AM", "12:30 PM", "4:30 PM"]
+  },
+  {
+    "name": "Dr. Sidharth Saoji",
+    "specialization": "ENT Specialist",
+    "hospital": "Wockhardt Super Speciality Hospital, Nagpur",
+    "experience": 8,
+    "fee": 800,
+    "slots": ["10:00 AM", "1:00 PM", "5:30 PM"]
+  },
+  {
+    "name": "Dr. Hemant Chhajed",
+    "specialization": "General Surgeon",
+    "hospital": "Wockhardt Super Speciality Hospital, Nagpur",
+    "experience": 24,
+    "fee": 1000,
+    "slots": ["11:00 AM", "2:30 PM", "6:00 PM"]
+  },
+  {
+    "name": "Dr. Ram Godeswar",
+    "specialization": "Cardiologist",
+    "hospital": "CARE Hospital, Nagpur",
+    "experience": 34,
+    "fee": 600,
+    "slots": ["9:00 AM", "12:00 PM", "4:00 PM"]
+  },
+  {
+    "name": "Dr. Varun Bhargava",
+    "specialization": "Cardiologist",
+    "hospital": "CARE Hospital, Nagpur",
+    "experience": 22,
+    "fee": 800,
+    "slots": ["10:30 AM", "1:00 PM", "5:00 PM"]
+  },
+  {
+    "name": "Dr. Amit Kulkarni",
+    "specialization": "Orthopedic Surgeon",
+    "hospital": "Orange City Hospital, Nagpur",
+    "experience": 21,
+    "fee": 900,
+    "slots": ["9:30 AM", "12:30 PM", "3:30 PM"]
+  }
+]
