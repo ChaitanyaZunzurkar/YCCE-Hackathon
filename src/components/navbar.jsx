@@ -39,11 +39,12 @@ export default function Navbar() {
       </div>
 
       {/* Middle: Links */}
-      <div className="space-x-6 text-gray-700 font-medium">
+      <div className="space-x-16 text-gray-700 font-bold text-lg">
         <Link to="/">Home</Link>
         <Link to="/chat">Chatbot</Link>
         <Link to="/doctors">Find Doctors</Link>
         <Link to="/emergency">Emergency</Link>
+        <Link to="/abha-bot">ABHA</Link>
       </div>
 
       {/* Right: User Profile or Auth Buttons */}
@@ -70,7 +71,7 @@ export default function Navbar() {
     className="bg-sky-500 text-white rounded-full flex items-center justify-center 
                cursor-pointer px-5 py-2 gap-2 shadow-sm
                hover:bg-sky-600 hover:scale-105 hover:shadow-[0_8px_20px_rgba(0,0,0,0.2)]  
-               transition-all duration-300"
+               transition-all duration-300 mr-3"
   >
     Profile
   </button>
@@ -80,7 +81,7 @@ export default function Navbar() {
     className="bg-sky-500 text-white rounded-full flex items-center justify-center 
                cursor-pointer px-5 py-2 gap-2 shadow-sm
                hover:bg-sky-600 hover:scale-105 hover:shadow-[0_8px_20px_rgba(0,0,0,0.2)] 
-               transition-all duration-300"
+               transition-all duration-300 z-10"
   >
     Logout
   </button>
