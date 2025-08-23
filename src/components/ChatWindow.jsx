@@ -6,7 +6,7 @@ export default function ChatWindow({ messages, loading, chatEndRef }) {
   const path = location.pathname;
 
   return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-4 relative">
+    <div className="flex-1 overflow-y-auto p-4 space-y-4 relative ">
       {/* Animated gradient background */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-slow opacity-50 blur-[30px]"></div>
 
