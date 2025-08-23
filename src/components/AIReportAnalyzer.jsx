@@ -8,7 +8,7 @@ export default function ChatWindow({ messages, loading, chatEndRef, onSend }) {
 
   return (
     // ✅ One single card
-    <div className="flex flex-col w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden relative">
+    <div className="flex flex-col w-screen mx-auto h-[88vh] bg-white shadow-lg overflow-x-hidden relative h-[80vh] ">
       
       {/* Animated gradient background */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-slow opacity-50 blur-[30px]"></div>
@@ -16,7 +16,7 @@ export default function ChatWindow({ messages, loading, chatEndRef, onSend }) {
       {/* Chat content area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {/* Heading */}
-        <span className="block text-black font-bold text-2xl text-center mb-4">
+        <span className="block text-sky-400 font-bold text-5xl text-center mb-4 my-6 ">
           {path === "/chat"
             ? "Smart health reports in seconds 🩺"
             : path === "/abha-bot"

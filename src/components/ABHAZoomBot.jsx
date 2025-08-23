@@ -102,16 +102,16 @@ export default function AbhaSmartHealthcare() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-4">
-      <header className="text-center sticky top-0 bg-gray-800 p-4 rounded-lg shadow mb-4">
-        <h1 className="text-2xl font-bold">ABHA-Linked Smart Healthcare (USP Demo)</h1>
+    <div className="min-h-screen bg-white mx-auto px-12 text-white p-4 w-screen ">
+      <header className="text-center sticky top-0  p-4 rounded-lg shadow mb-4 bg-gray-800">
+        <h1 className="text-2xl font-bold text-white">ABHA-Linked Smart Healthcare (USP Demo)</h1>
         <p className="text-sm text-gray-300 mt-1">ABDM Sandbox (Mock) • Create ABHA → Link → Fetch Records → Emergency QR</p>
       </header>
 
       <main className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Create ABHA */}
         <section className="bg-gray-800 p-4 rounded-xl shadow space-y-4">
-          <h2 className="text-xl font-bold">1) Create ABHA (Mock)</h2>
+          <h2 className="text-xl font-bold ">1) Create ABHA (Mock)</h2>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block mb-1 text-gray-300">Aadhaar (demo)</label>
@@ -129,7 +129,7 @@ export default function AbhaSmartHealthcare() {
                 type="text"
                 value={createData.lastName}
                 onChange={(e) => setCreateData({...createData, lastName: e.target.value})}
-                placeholder="Devi"
+                placeholder=""
                 className="w-full p-2 rounded-lg bg-gray-900 text-white border border-gray-700"
               />
             </div>
@@ -206,7 +206,7 @@ export default function AbhaSmartHealthcare() {
 
         {/* Fetch Records */}
         <section className="bg-gray-800 p-4 rounded-xl shadow space-y-4">
-          <h2 className="text-xl font-bold">3) Fetch Health Records</h2>
+          <h2 className="text-xl font-bold text-white">3) Fetch Health Records</h2>
           <label className="block mb-1 text-gray-300">ABHA ID</label>
           <input
             type="text"
@@ -215,7 +215,7 @@ export default function AbhaSmartHealthcare() {
             placeholder="(same as above)"
             className="w-full p-2 rounded-lg bg-gray-900 text-white border border-gray-700"
           />
-          <button onClick={handleRecords} disabled={loadingRecords} className="w-full bg-blue-600 hover:bg-blue-500 p-2 rounded-lg">
+          <button onClick={handleRecords} disabled={loadingRecords} className="w-full bg-blue-600 hover:bg-blue-500 p-2 rounded-lg ">
             {loadingRecords ? "Fetching..." : "Get Records"}
           </button>
           {recordsOut && <pre className="bg-gray-900 p-2 rounded">{JSON.stringify(recordsOut, null, 2)}</pre>}
