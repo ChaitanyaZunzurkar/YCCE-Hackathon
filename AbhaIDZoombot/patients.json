@@ -1,0 +1,140 @@
+[
+  {
+    "patient_id": "P001",
+    "name": "Anshul Parate",
+    "age": 28,
+    "gender": "Male",
+    "past_diseases": ["Typhoid", "Asthma"],
+    "treatments": [
+      {
+        "disease": "Typhoid",
+        "treatment": "14-day course of antibiotics (Cefixime), hydration therapy"
+      },
+      {
+        "disease": "Asthma",
+        "treatment": "Inhaled corticosteroids, bronchodilator inhaler, lifestyle modifications"
+      }
+    ]
+  },
+  {
+    "patient_id": "P002",
+    "name": "Riya Sharma",
+    "age": 34,
+    "gender": "Female",
+    "past_diseases": ["Diabetes Type 2", "Hypertension"],
+    "treatments": [
+      {
+        "disease": "Diabetes Type 2",
+        "treatment": "Metformin 500mg daily, low-carb diet, regular exercise"
+      },
+      {
+        "disease": "Hypertension",
+        "treatment": "Amlodipine 5mg, reduced salt intake, yoga therapy"
+      }
+    ]
+  },
+  {
+    "patient_id": "P003",
+    "name": "Suresh Patil",
+    "age": 47,
+    "gender": "Male",
+    "past_diseases": ["Kidney Stones"],
+    "treatments": [
+      {
+        "disease": "Kidney Stones",
+        "treatment": "Lithotripsy procedure, increased water intake, prescribed painkillers"
+      }
+    ]
+  },
+  {
+    "patient_id": "P004",
+    "name": "Meena Verma",
+    "age": 55,
+    "gender": "Female",
+    "past_diseases": ["Breast Cancer"],
+    "treatments": [
+      {
+        "disease": "Breast Cancer",
+        "treatment": "Lumpectomy surgery, 6 cycles of chemotherapy, ongoing hormone therapy"
+      }
+    ]
+  },
+  {
+    "patient_id": "P005",
+    "name": "Arjun Gupta",
+    "age": 19,
+    "gender": "Male",
+    "past_diseases": ["Fractured Tibia"],
+    "treatments": [
+      {
+        "disease": "Fractured Tibia",
+        "treatment": "Orthopedic surgery with metal rod fixation, 8 weeks of physiotherapy"
+      }
+    ]
+  },
+  {
+    "patient_id": "P006",
+    "name": "Neha Kulkarni",
+    "age": 42,
+    "gender": "Female",
+    "past_diseases": ["Hypothyroidism"],
+    "treatments": [
+      {
+        "disease": "Hypothyroidism",
+        "treatment": "Levothyroxine 50 mcg daily, regular thyroid function tests"
+      }
+    ]
+  },
+  {
+    "patient_id": "P007",
+    "name": "Rahul Deshmukh",
+    "age": 61,
+    "gender": "Male",
+    "past_diseases": ["Coronary Artery Disease"],
+    "treatments": [
+      {
+        "disease": "Coronary Artery Disease",
+        "treatment": "Angioplasty with stent placement, Aspirin and Statins"
+      }
+    ]
+  },
+  {
+    "patient_id": "P008",
+    "name": "Pooja Singh",
+    "age": 29,
+    "gender": "Female",
+    "past_diseases": ["Polycystic Ovary Syndrome (PCOS)"],
+    "treatments": [
+      {
+        "disease": "Polycystic Ovary Syndrome (PCOS)",
+        "treatment": "Oral contraceptive pills, Metformin, lifestyle modifications"
+      }
+    ]
+  },
+  {
+    "patient_id": "P009",
+    "name": "Vikram Jadhav",
+    "age": 40,
+    "gender": "Male",
+    "past_diseases": ["Tuberculosis"],
+    "treatments": [
+      {
+        "disease": "Tuberculosis",
+        "treatment": "6-month anti-TB regimen (HRZE therapy), regular sputum check-ups"
+      }
+    ]
+  },
+  {
+    "patient_id": "P010",
+    "name": "Sneha Iyer",
+    "age": 50,
+    "gender": "Female",
+    "past_diseases": ["Osteoarthritis"],
+    "treatments": [
+      {
+        "disease": "Osteoarthritis",
+        "treatment": "Pain management with NSAIDs, physiotherapy, joint supplements"
+      }
+    ]
+  }
+]
