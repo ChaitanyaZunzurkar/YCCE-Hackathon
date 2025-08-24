@@ -6,7 +6,7 @@ export default function OmniWidget() {
     const script = document.createElement("script");
     script.id = "omnidimension-web-widget";
     script.src =
-      "https://backend.omnidim.io/web_widget.js?secret_key=d660b28c07732ced591f62e89a0ad0d2";
+      "https://backend.omnidim.io/web_widget.js?secret_key=ce72bc3af8a82b019ba39af03bc124dd";
     script.async = true;
     document.body.appendChild(script);
 

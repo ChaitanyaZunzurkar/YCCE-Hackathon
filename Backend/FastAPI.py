@@ -12,26 +12,26 @@ import asyncio
 import PyPDF2
 from typing import Optional
 
-# ----------------- Logging Setup -----------------
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# ----------------- FastAPI App -----------------
+
 app = FastAPI(title="Groq Memory-Aware AI")
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",  # React default
-        "http://localhost:5173",  # Vite default
-        "http://localhost:8080",  # In case you're using this too
+        "http://localhost:3000",  
+        "http://localhost:5173",  
+        "http://localhost:8080",  
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# ----------------- Background Wakeup Task -----------------
+
 async def wakeup():
     while True:
         await asyncio.sleep(1)
@@ -40,7 +40,6 @@ async def wakeup():
 async def startup_event():
     asyncio.create_task(wakeup())
 
-# ----------------- Pydantic Models -----------------
 class QueryRequest(BaseModel):
     user_query: str
     user_id: str = "p123"

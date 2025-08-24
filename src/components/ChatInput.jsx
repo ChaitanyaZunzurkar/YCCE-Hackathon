@@ -24,6 +24,20 @@ export default function ChatInput({ onSend, loading }) {
         className="flex-1 border border-black rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-black text-black "
       />
 
+      <input
+        type="file"
+        accept="application/pdf"
+        onChange={(e) => setPdfFile(e.target.files[0])}
+        className="hidden"
+        id="pdfUpload"
+      />
+      <label
+        htmlFor="pdfUpload"
+        className="cursor-pointer bg-gray-200 px-3 py-2 rounded-lg text-sm hover:bg-gray-300"
+      >
+        📎
+      </label>
+
       <button
         type="submit"
         disabled={loading}

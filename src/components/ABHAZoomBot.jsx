@@ -104,19 +104,21 @@ export default function AbhaSmartHealthcare() {
   return (
     <div className="min-h-screen bg-white mx-auto px-12 text-white p-4 w-screen ">
       <header className="text-center sticky top-0  p-4 rounded-lg shadow mb-4 bg-gray-800">
-        <h1 className="text-2xl font-bold text-white">ABHA-Linked Smart Healthcare (USP Demo)</h1>
-        <p className="text-sm text-gray-300 mt-1">ABDM Sandbox (Mock) • Create ABHA → Link → Fetch Records → Emergency QR</p>
+        <h1 className="text-2xl font-bold text-white">ABHA-Linked Smart Healthcare</h1>
+        <p className="text-sm text-gray-300 mt-1">ABDM Sandbox • Create ABHA → Link → Fetch Records → Emergency QR</p>
       </header>
 
       <main className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Create ABHA */}
         <section className="bg-gray-800 p-4 rounded-xl shadow space-y-4">
 
-          <h2 className="text-xl font-bold ">1. Create ABHA (Mock)</h2>
+          <h2 className="text-xl font-bold ">1. Create ABHA</h2>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block mb-1 text-gray-300">Aadhaar (demo)</label>
+              <label className="block mb-1 text-gray-300">Aadhaar
+                
+              </label>
               <input
                 type="text"
                 value={createData.aadhaar}
