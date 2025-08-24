@@ -1,25 +1,28 @@
 export default function ChatMessage({ msg }) {
+  const isUser = msg.sender === "user";
+
   return (
-    <div
-      className={`flex ${
-        msg.sender === "user" ? "justify-end" : "justify-start"
-      }`}
-    >
+    <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
       <div
-        className={`px-4 py-3 rounded-2xl max-w-lg shadow-md transition-transform duration-200 ${
-          msg.sender === "user"
-            ? "bg-blue-500 text-white rounded-br-none hover:scale-105"
-            : "bg-white text-gray-800 rounded-bl-none hover:scale-105"
+        className={`px-4 py-2 rounded-2xl shadow max-w-xs break-words ${
+          isUser
+            ? "bg-blue-600 text-white rounded-br-none"
+            : "bg-gray-200 text-gray-800 rounded-bl-none"
         }`}
       >
-        <p className="leading-relaxed">{msg.text}</p>
+        {msg.text && <p>{msg.text}</p>}
+
         {msg.pdf && (
-          <span className="mt-2 text-xs block bg-gray-200 text-gray-700 px-2 py-1 rounded-md">
-            📄 {msg.pdf}
-          </span>
+          <a
+            href={URL.createObjectURL(msg.pdf)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block mt-2 text-sm text-blue-600 underline"
+          >
+            📄 {msg.pdf.name}
+          </a>
         )}
       </div>
     </div>
   );
 }
-

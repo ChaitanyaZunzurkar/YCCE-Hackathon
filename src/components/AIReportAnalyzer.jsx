@@ -5,6 +5,7 @@ import ChatInput from "./ChatInput";
 
 export default function ChatWindow() {
   const [messages, setMessages] = useState([]);
+  const [uploadedFiles, setUploadedFiles] = useState([]); // Track uploaded PDFs
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
   const location = useLocation();
@@ -15,14 +16,17 @@ export default function ChatWindow() {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
-  // ✅ Backend logic integrated
+  // Backend logic
   const sendMessage = async (userQuery, pdfFile) => {
     if (!userQuery.trim() && !pdfFile) return;
 
-    // Show user message instantly
+    // Add uploaded PDF to the top section
+    if (pdfFile) setUploadedFiles((prev) => [...prev, pdfFile]);
+
+    // Show user message
     setMessages((prev) => [
       ...prev,
-      { sender: "user", text: userQuery, pdf: pdfFile?.name },
+      { sender: "user", text: userQuery },
     ]);
 
     setLoading(true);
@@ -37,12 +41,9 @@ export default function ChatWindow() {
         body: formData,
       });
 
-      if (!res.ok) {
-        throw new Error(`Server error: ${res.status}`);
-      }
+      if (!res.ok) throw new Error(`Server error: ${res.status}`);
 
       const data = await res.json();
-      console.log("API Response:", data);
 
       setMessages((prev) => [
         ...prev,
@@ -52,7 +53,6 @@ export default function ChatWindow() {
         },
       ]);
     } catch (err) {
-      console.error("Fetch error:", err);
       setMessages((prev) => [
         ...prev,
         { sender: "bot", text: "⚠️ Error connecting to server." },
@@ -63,21 +63,42 @@ export default function ChatWindow() {
   };
 
   return (
-    <div className="flex flex-col w-screen mx-auto h-[88vh] bg-white shadow-lg overflow-x-hidden relative">
+    <div className="flex flex-col w-screen mx-auto h-[88vh] bg-gray-900 shadow-lg overflow-x-hidden relative text-white">
       
       {/* Animated gradient background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-slow opacity-50 blur-[30px]"></div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-blue-700 via-purple-700 to-pink-700 animate-gradient-slow opacity-30 blur-[30px]"></div>
 
       {/* Chat content area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {/* Heading */}
-        <span className="block text-sky-400 font-bold text-5xl text-center mb-4 my-6">
+        <span className="block text-white font-bold text-4xl text-center mb-4 my-6">
           {path === "/chat"
             ? "Smart health reports in seconds 🩺"
             : path === "/abha-bot"
             ? "Book virtual appointment with doctor"
             : ""}
         </span>
+
+        {/* Uploaded PDFs at top */}
+        {uploadedFiles.length > 0 && (
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2">Uploaded PDFs:</h3>
+            <ul className="list-disc list-inside space-y-1">
+              {uploadedFiles.map((file, idx) => (
+                <li key={idx}>
+                  <a
+                    href={URL.createObjectURL(file)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:underline"
+                  >
+                    {file.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Messages */}
         {messages?.map((msg, idx) => (
@@ -87,18 +108,17 @@ export default function ChatWindow() {
         {/* Loading indicator */}
         {loading && (
           <div className="flex justify-start">
-            <div className="px-4 py-2 bg-gray-100 text-gray-600 rounded-2xl rounded-bl-none shadow-md animate-pulse">
+            <div className="px-4 py-2 bg-gray-700 text-white rounded-2xl rounded-bl-none shadow-md animate-pulse">
               AI is typing...
             </div>
           </div>
         )}
 
-        {/* Reference to auto-scroll */}
         <div ref={chatEndRef} />
       </div>
 
-      {/* ✅ Input with backend logic */}
-      <div className="border-t p-3 bg-gray-50">
+      {/* Input */}
+      <div className="border-t p-3 bg-gray-800">
         <ChatInput onSend={sendMessage} loading={loading} />
       </div>
     </div>
